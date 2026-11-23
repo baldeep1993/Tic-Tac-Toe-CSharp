@@ -22,7 +22,7 @@ The application is being built as a console-based game, with the game board and 
 The application is currently under development. New functionality, improvements, and code enhancements will be added as development progresses.
 
 # 📸 Application Preview
-![Application Preview](Screenshots/Game_Launc_Page.png)
+![Application Preview](Screenshots/GameLaunchPage.png)
 
 ## Getting Started
 
