@@ -1,9 +1,5 @@
 ﻿using System.Runtime.ConstrainedExecution;
 
-
-Console.SetCursorPosition(0, 5);
-
-//Console.BackgroundColor = ConsoleColor.Gray;
 System.Console.WriteLine("============================================");
 System.Console.WriteLine();
 System.Console.WriteLine("       🎮 WELCOME TO TIC-TAC-TOE 🎮");
@@ -32,63 +28,11 @@ string[,] board = new string[3, 3] {
          {"7","8","9"}
         };
 
-//System.Console.WriteLine($"Row Count: {board.GetLength(0)}");
-
-//System.Console.WriteLine($"Column Count: {board.GetLength(1)}");
-
 //Creating the board=====================================================================
 
 //In order to Create the Board we can use a Method;
 
-static void DisplayBoard(string[,] board)
-{
-
-    for (int row = 0; row < board.GetLength(0); row++)
-    {
-        for (int column = 0; column < board.GetLength(1); column++)
-        {
-            if (column < 2)
-            {
-                System.Console.Write(board[row, column] + " | ");
-            }
-            else
-            {
-                System.Console.Write(board[row, column]);
-            }
-        }
-        if (row < 2)
-        {
-            System.Console.WriteLine("\n--x---x--");
-        }
-        else
-        {
-            System.Console.WriteLine();
-        }
-    }
-}
-
-for (int row = 0; row < board.GetLength(0); row++)
-{
-    for (int column = 0; column < board.GetLength(1); column++)
-    {
-        if (column < 2)
-        {
-            System.Console.Write(board[row, column] + " | ");
-        }
-        else
-        {
-            System.Console.Write(board[row, column]);
-        }
-    }
-    if (row < 2)
-    {
-        System.Console.WriteLine("\n--x---x--");
-    }
-    else
-    {
-        System.Console.WriteLine();
-    }
-}
+TicTacToeBoard.DisplayBoard(board);
 
 //==========================================================================================
 
@@ -135,25 +79,32 @@ do
 
                     if (board[rowNumber, columnNUmber] == "X" || board[rowNumber, columnNUmber] == "O")
                     {
-                        System.Console.WriteLine($"‼️Player A, board[{rowNumber},{columnNUmber}] is already taken. Please select any other cell.");
+                        System.Console.WriteLine($"‼️ Player A, Board[{rowNumber},{columnNUmber}] is already taken. Please select any other cell.");
+                        System.Console.WriteLine();
                     }
                     else
                     {
+                        Console.Clear();
                         board[rowNumber, columnNUmber] = "X";
+
                         playerAIsAlreadySelected = true;
                         PlayerACounter++;
-                        DisplayBoard(board);
+
+                        TicTacToeBoard.DisplayBoard(board); //Calling the Method
+
                         System.Console.WriteLine();
                     }
                 }
                 else
                 {
                     System.Console.WriteLine("⚠️ Player A, You have entered a number that is out of range for board.");
+                    System.Console.WriteLine();
                 }
             }
             else
             {
-                System.Console.WriteLine("⚠️Player A, the input you have provided is not a valid Integer. Please try again. 🙂");
+                System.Console.WriteLine("⚠️ Player A, the input you have provided is not a valid Integer. Please try again. 🙂");
+                System.Console.WriteLine();
             }
         }
 
@@ -190,25 +141,32 @@ do
 
                     if (board[rowNumber, columnNUmber] == "X" || board[rowNumber, columnNUmber] == "O")
                     {
-                        System.Console.WriteLine($"‼️Player B, board[{rowNumber},{columnNUmber}] is already taken. Please select any other cell.");
+                        System.Console.WriteLine($"‼️ Player B, Board[{rowNumber},{columnNUmber}] is already taken. Please select any other cell.");
+                        System.Console.WriteLine();
                     }
                     else
                     {
+                        Console.Clear();
                         board[rowNumber, columnNUmber] = "O";
+
                         playerBIsAlreadySelected = true;
                         PlayerBCounter++;
-                        DisplayBoard(board);
+
+                        TicTacToeBoard.DisplayBoard(board); //Calling the Method
+
                         System.Console.WriteLine();
                     }
                 }
                 else
                 {
                     System.Console.WriteLine("⚠️ Player B, You have entered a number that is out of range for board.");
+                    System.Console.WriteLine();
                 }
             }
             else
             {
-                System.Console.WriteLine("⚠️Player B, the input you have provided is not a valid Integer. Please try again. 🙂");
+                System.Console.WriteLine("⚠️ Player B, the input you have provided is not a valid Integer. Please try again. 🙂");
+                System.Console.WriteLine();
             }
         }
 
@@ -226,144 +184,20 @@ System.Console.WriteLine("And the Winner is..");
 System.Console.WriteLine("===================");
 System.Console.WriteLine();
 
-bool playerAWinner = false;
+bool playerAResult = PlayerAWinnerCheck.WinnerCheck(board);
 
+bool playerBResult = PlayerBWinnerCheck.WinnerCheck(board);
 
-//All rows Check
-
-for (int i = 0; i < board.GetLength(0); i++)
+if (playerAResult)
 {
-    if (board[i, 0] == "X" && board[i, 1] == "X" && board[i, 2] == "X")
-    {
-        playerAWinner = true;
-        System.Console.WriteLine("Row Match Found");
-        break;
-    }
+    System.Console.WriteLine("Player A has WON the Game");
 }
-
-//All Columns Check
-
-for (int i = 0; i < board.GetLength(1); i++)
+else if (playerBResult)
 {
-    if (board[0, i] == "X" && board[1, i] == "X" && board[2, i] == "X")
-    {
-        playerAWinner = true;
-        System.Console.WriteLine("Column Match Found");
-        break;
-    }
-}
-
-//First Diagonal Check
-int firstDiagonalCheckCounter = 0;
-
-for (int i = 0; i < board.GetLength(0); i++)
-{
-    if (board[i, i] == "X")
-    {
-        firstDiagonalCheckCounter++;
-    }
-}
-
-if (firstDiagonalCheckCounter == 3)
-{
-    playerAWinner = true;
-}
-
-//Second Diagonal Check
-int boardLength = 2;
-int secondDiagonalCheckCounter = 0;
-
-for (int i = 0; i < board.GetLength(0); i++)
-{
-    if (board[i, boardLength - i] == "X")
-    {
-        secondDiagonalCheckCounter++;
-    }
-}
-
-if (secondDiagonalCheckCounter == 3)
-{
-    playerAWinner = true;
-    System.Console.WriteLine("Second Diagonal Match Found"); ;
-}
-
-if (playerAWinner)
-{
-    System.Console.WriteLine("Player A is winner 🙂");
+    System.Console.WriteLine("Player B has WON the Game");
 }
 else
 {
-    System.Console.WriteLine("Player A Lost 😔");
+    System.Console.WriteLine("Match Draw");
 }
 
-
-//PlayerB Winner Check
-
-bool playerBWinner = false;
-
-
-//All rows Check
-
-for (int i = 0; i < board.GetLength(0); i++)
-{
-    if (board[i, 0] == "O" && board[i, 1] == "O" && board[i, 2] == "O")
-    {
-        playerBWinner = true;
-        System.Console.WriteLine("Row Match Found");
-        break;
-    }
-}
-
-//All Columns Check
-
-for (int i = 0; i < board.GetLength(1); i++)
-{
-    if (board[0, i] == "O" && board[1, i] == "O" && board[2, i] == "O")
-    {
-        playerBWinner = true;
-        System.Console.WriteLine("Column Match Found");
-        break;
-    }
-}
-
-//First Diagonal Check
-int playerBfirstDiagonalCheckCounter = 0;
-
-for (int i = 0; i < board.GetLength(0); i++)
-{
-    if (board[i, i] == "X")
-    {
-        playerBfirstDiagonalCheckCounter++;
-    }
-}
-
-if (playerBfirstDiagonalCheckCounter == 3)
-{
-    playerAWinner = true;
-}
-
-//Second Diagonal Check
-int playerBsecondDiagonalCheckCounter = 0;
-
-for (int i = 0; i < board.GetLength(0); i++)
-{
-    if (board[i, boardLength - i] == "X")
-    {
-        playerBsecondDiagonalCheckCounter++;
-    }
-}
-
-if (playerBsecondDiagonalCheckCounter == 3)
-{
-    playerBWinner = true;
-    System.Console.WriteLine("Second Diagonal Match Found"); ;
-}
-
-if (playerBWinner)
-{
-    System.Console.WriteLine("Player B is winner 🙂");
-}
-else
-{
-    System.Console.WriteLine("Player B Lost 😔");
-}
