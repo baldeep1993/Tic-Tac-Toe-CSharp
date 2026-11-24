@@ -1,12 +1,30 @@
 ﻿using System.Runtime.ConstrainedExecution;
 
+
+Console.SetCursorPosition(0, 5);
+
 //Console.BackgroundColor = ConsoleColor.Gray;
 System.Console.WriteLine("============================================");
 System.Console.WriteLine();
-System.Console.WriteLine("WELCOME TO TIC-TAC-TOE GAME");
+System.Console.WriteLine("       🎮 WELCOME TO TIC-TAC-TOE 🎮");
 System.Console.WriteLine();
 System.Console.WriteLine("============================================");
 System.Console.WriteLine();
+System.Console.WriteLine("⚔️  TWO PLAYERS. ONE BOARD. ZERO FRIENDSHIP.");
+System.Console.WriteLine();
+System.Console.WriteLine("🔥 The battle for 9 boxes begins!");
+System.Console.WriteLine();
+System.Console.WriteLine("Player A: Ready to destroy friendships?");
+System.Console.WriteLine("Player B: Ready to blame the game?");
+System.Console.WriteLine();
+System.Console.WriteLine("Rules are simple:");
+System.Console.WriteLine("1. Get 3 in a row to claim victory.");
+System.Console.WriteLine("2. Don't cheat. We are watching you!");
+System.Console.WriteLine("3. No crying if you lose.");
+System.Console.WriteLine();
+System.Console.WriteLine("LET THE BATTLE BEGIN!");
+System.Console.WriteLine();
+System.Console.WriteLine("============================================");
 
 string[,] board = new string[3, 3] {
          {"1","2","3"},
@@ -14,16 +32,40 @@ string[,] board = new string[3, 3] {
          {"7","8","9"}
         };
 
-System.Console.WriteLine("Player A vs Player B");
-System.Console.WriteLine("====================");
-System.Console.WriteLine();
-
-
 //System.Console.WriteLine($"Row Count: {board.GetLength(0)}");
 
 //System.Console.WriteLine($"Column Count: {board.GetLength(1)}");
 
 //Creating the board=====================================================================
+
+//In order to Create the Board we can use a Method;
+
+static void DisplayBoard(string[,] board)
+{
+
+    for (int row = 0; row < board.GetLength(0); row++)
+    {
+        for (int column = 0; column < board.GetLength(1); column++)
+        {
+            if (column < 2)
+            {
+                System.Console.Write(board[row, column] + " | ");
+            }
+            else
+            {
+                System.Console.Write(board[row, column]);
+            }
+        }
+        if (row < 2)
+        {
+            System.Console.WriteLine("\n--x---x--");
+        }
+        else
+        {
+            System.Console.WriteLine();
+        }
+    }
+}
 
 for (int row = 0; row < board.GetLength(0); row++)
 {
@@ -100,6 +142,8 @@ do
                         board[rowNumber, columnNUmber] = "X";
                         playerAIsAlreadySelected = true;
                         PlayerACounter++;
+                        DisplayBoard(board);
+                        System.Console.WriteLine();
                     }
                 }
                 else
@@ -153,6 +197,8 @@ do
                         board[rowNumber, columnNUmber] = "O";
                         playerBIsAlreadySelected = true;
                         PlayerBCounter++;
+                        DisplayBoard(board);
+                        System.Console.WriteLine();
                     }
                 }
                 else
@@ -174,35 +220,11 @@ do
 
 //==========================================================================================
 
-
-//Printing the board again==================================================================
-
-for (int row = 0; row < board.GetLength(0); row++)
-{
-    for (int column = 0; column < board.GetLength(1); column++)
-    {
-        if (column < 2)
-        {
-            System.Console.Write(board[row, column] + " | ");
-        }
-        else
-        {
-            System.Console.Write(board[row, column]);
-        }
-    }
-    if (row < 2)
-    {
-        System.Console.WriteLine("\n--x---x--");
-    }
-    else
-    {
-        System.Console.WriteLine();
-    }
-}
-
-//================================================================================
-
 //Winner Declaration
+
+System.Console.WriteLine("And the Winner is..");
+System.Console.WriteLine("===================");
+System.Console.WriteLine();
 
 bool playerAWinner = false;
 
