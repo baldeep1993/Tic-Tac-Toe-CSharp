@@ -2,6 +2,18 @@
 
 A console-based Tic Tac Toe game developed using **C#** and **.NET**.
 
+## 🎮 Download and Play
+
+Want to play the game without setting up the development environment?
+
+1. Visit the [Releases](../../releases) section.
+2. Download `TicTacToe.exe`.
+3. Double-click the executable to start playing.
+
+**Requirements:**
+- Windows 10/11 (64-bit)
+- No separate .NET runtime installation required.
+
 ## 📌 About the Project
 
 This project is being developed as part of my C# learning journey. The objective is to understand and apply fundamental programming concepts by building a classic Tic Tac Toe game.

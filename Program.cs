@@ -45,8 +45,8 @@ System.Console.WriteLine();
 
 do
 {
-    bool playerAIsAlreadySelected = false; //This bool variable will check if no same Cell is selected by Players A
-    bool playerBIsAlreadySelected = false; //This bool variable will check if no same Cell is selected by Players B
+    bool playerATurnCompleted = false; //This bool variable will check if no same Cell is selected by Players A
+    bool playerBTurnCompleted = false; //This bool variable will check if no same Cell is selected by Players B
 
     do
     {
@@ -87,7 +87,7 @@ do
                         Console.Clear();
                         board[rowNumber, columnNUmber] = "X";
 
-                        playerAIsAlreadySelected = true;
+                        playerATurnCompleted = true;
                         PlayerACounter++;
 
                         TicTacToeBoard.DisplayBoard(board); //Calling the Method
@@ -109,7 +109,7 @@ do
         }
 
 
-    } while (playerAIsAlreadySelected == false);
+    } while (playerATurnCompleted == false);
 
     do
     {
@@ -149,7 +149,7 @@ do
                         Console.Clear();
                         board[rowNumber, columnNUmber] = "O";
 
-                        playerBIsAlreadySelected = true;
+                        playerBTurnCompleted = true;
                         PlayerBCounter++;
 
                         TicTacToeBoard.DisplayBoard(board); //Calling the Method
@@ -172,7 +172,7 @@ do
 
 
 
-    } while (playerBIsAlreadySelected == false);
+    } while (playerBTurnCompleted == false);
 
 } while (PlayerACounter < 3 && PlayerBCounter < 3);
 
